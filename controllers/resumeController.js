@@ -5,12 +5,13 @@ const Job = require('../models/jobModel');
 exports.createResume = async (req, res) => {
     try {
         // Extract resume data from the request body
-        const { email, username, resumeURL } = req.body;
+        const { jobId, email, username, resumeURL } = req.body;
         console.log(req.body)
 
 
         // Create a new resume instance
         const newResume = new Resume({
+            jobId,
             email,
             username,
             resumeURL
@@ -20,7 +21,6 @@ exports.createResume = async (req, res) => {
         await newResume.save();
 
         // Increase the number of job applicants for the corresponding job
-        const jobId = req.params.jobId;
         const job = await Job.findById(jobId);
         if (!job) {
             return res.status(404).json({ error: 'Job not found' });

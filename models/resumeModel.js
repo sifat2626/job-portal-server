@@ -12,6 +12,10 @@ const resumeSchema = new mongoose.Schema({
     resumeURL: {
         type: String,
         required: true
+    },
+    jobId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job'
     }
 });
 
