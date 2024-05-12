@@ -13,7 +13,7 @@ const cookieParser = require('cookie-parser');
 
 // middlewares
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173','https://webby-522d9.web.app'],
     credentials: true,
 }));
 app.use(morgan("dev"));
