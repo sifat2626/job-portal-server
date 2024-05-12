@@ -38,6 +38,13 @@ exports.createJob = async (req, res) => {
             applicationDeadline
         } = req.body;
 
+        if(min_salary>max_salary){
+            return res.status(400).json({error:'minimum salary must be less than max salary'})
+        }
+        if(Date.now()>applicationDeadline){
+            return res.status(400).json({error:'deadline should be after posting date'})
+        }
+
         // Create new job instance
         const newJob = new Job({
             jobBannerURL,
@@ -96,6 +103,8 @@ exports.updateJob = async (req, res) => {
     try {
         const jobId = req.params.jobId;
         const updateData = req.body;
+
+
 
         // Update the job in the database
         const updatedJob = await Job.findByIdAndUpdate(jobId, updateData, { new: true });
