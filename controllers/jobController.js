@@ -38,9 +38,9 @@ exports.createJob = async (req, res) => {
             applicationDeadline
         } = req.body;
 
-        if(min_salary>max_salary){
-            return res.status(400).json({error:'minimum salary must be less than max salary'})
-        }
+        // if(min_salary>max_salary){
+        //     return res.status(400).json({error:'minimum salary must be less than max salary'})
+        // }
         if(Date.now()>applicationDeadline){
             return res.status(400).json({error:'deadline should be after posting date'})
         }
